@@ -1,0 +1,36 @@
+{
+  "name": "part-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node store.js",
+    "db:create": "createdb grocery_store",
+    "db:init": "npm run db:loadschema && npm run db:seed",
+    "db:loadschema": "psql grocery_store < ./db/schema.sql",
+    "db:seed": "psql grocery_store < ./db/load_data.sql",
+    "test:db:create": "createdb grocery_store_test",
+    "test:db:drop": "dropdb grocery_store_test",
+    "test:db:loadschema": "psql grocery_store_test < ./db/schema.sql",
+    "test:db:seed": "psql grocery_store_test < ./db/load_data.sql",
+    "test:db:reset": "npm run test:db:drop && npm run test:db:create && npm run test:db:loadschema",
+    "test": "export NODE_ENV=test && npm run test:db:reset && mocha --exit",
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg-promise": "^7.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "pg-monitor": "^0.8.3",
+    "ajv": "^5.2.2",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0"
+  }
+}
