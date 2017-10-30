@@ -4,8 +4,8 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(bodyParser.text({type: 'text/plain'})); //{type: 'application/json'})
-// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text({type: 'text/plain'})); 
+app.use(bodyParser.json());
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
@@ -26,13 +26,15 @@ const daysOfWeek = {
 app.get('/api/days/:day', (req, res) => {
   const day = req.params.day;
   if(!daysOfWeek.hasOwnProperty(day)) {
-    res.status(400);
-    res.type('text/plain');
-    res.send(`${day} is not a valid day!`)
+    res
+    .status(400)
+    .type('text/plain')
+    .send(`${day} is not a valid day!`)
   } else {
-    res.status(200);
-    res.type('text/plain');
-    res.send(String(daysOfWeek[day]));
+    res
+    .status(200)
+    .type('text/plain')
+    .send(String(daysOfWeek[day]));
   }
 });
 
