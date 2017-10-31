@@ -48,6 +48,48 @@ body {
   font-size: 20px;
 }
 
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.closeBtn {
+  float: right;
+  font-size: 20px;
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  padding: 20px;
+  width: 30%;
+  height: 30%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px rgba(0,0,0,0.2);
+}
+
+.cart-item {
+  display: block;
+}
+
+.clearBtn {
+  float: left;
+  position: absolute;
+  /*top: 50px;*/
+  bottom: 170px;
+  padding: 5px 10px;
+  background-color: #f4f4f4;
+  box-shadow: 2px 2px;
+  border: 1px solid black;
+  font-size: 15px;
+}
 /* SIDEBAR */
 .sidebar {
   flex: 0 0 20%;

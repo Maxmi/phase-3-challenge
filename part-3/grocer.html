@@ -11,10 +11,22 @@
 <body class="flex flex-column">
   <header class="site-header flex flex-row-between">
     <h1>Grocer</h1>
-    <button type="button" id="cart-button">
+    <button type="button" id="cartBtn">
         Cart
         &nbsp;<span id="cart-item-count">(3)</span>
       </button>
+      
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="closeBtn" >&times;</span>
+          <h1>Cart</h1>
+          <span class="cart-item">Onions</span>
+          <span class="cart-item">Onions</span>
+          <span class="cart-item">Onions</span>
+          
+          <button type="button" id="clearBtn" class="clearBtn">Clear</button>
+        </div>  
+      </div>
   </header>
 
   <div class="flex flex-full">
@@ -33,7 +45,7 @@
         <li class="item flex flex-row-between">
           <span class="item-name">Onions</span>
           <span class="item-price">$1.11</span>
-          <button type="button">Add to cart</button>
+          <button type="button" class="addBtn">Add to cart</button>
         </li>
         <li class="item flex flex-row-between">
           <span class="item-name">Tomatoes</span>
