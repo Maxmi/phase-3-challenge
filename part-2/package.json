@@ -14,12 +14,13 @@
     "test:db:loadschema": "psql grocery_store_test < ./db/schema.sql",
     "test:db:seed": "psql grocery_store_test < ./db/load_data.sql",
     "test:db:reset": "npm run test:db:drop && npm run test:db:create && npm run test:db:loadschema",
-    "test": "export NODE_ENV=test && npm run test:db:reset && mocha --exit",
+    "test": "export NODE_ENV=test && npm run test:db:reset && mocha --exit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ascii-table": "0.0.9",
     "pg-promise": "^7.2.0"
   },
   "devDependencies": {

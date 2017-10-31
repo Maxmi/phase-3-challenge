@@ -40,8 +40,7 @@ app.get('/api/days/:day', (req, res) => {
 });
 
 app.post('/api/array/concat', (req, res) => {
-  const array1 = req.body.array1;
-  const array2 = req.body.array2;
+  const { array1, array2 } = req.body;
 
   if (!Array.isArray(array1) || !Array.isArray(array2)) {
     res
