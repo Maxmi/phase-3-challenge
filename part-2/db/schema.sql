@@ -11,21 +11,21 @@ CREATE TABLE items (
   section TEXT NOT NULL 
 );
 
--- each shopper can have many orders
+
 DROP TABLE IF EXISTS shoppers CASCADE;
 CREATE TABLE shoppers (
   shopper_id SERIAL PRIMARY KEY,
   shopper_name TEXT NOT NULL
 );
 
--- each order can have many items
+-- each shopper can have many orders 
 DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders (
   order_id SERIAL PRIMARY KEY,
   shopper_id INTEGER REFERENCES shoppers (shopper_id)
 );
 
--- how to store many items in one order? 
+-- each order can have many items 
 DROP TABLE IF EXISTS order_item CASCADE;
 CREATE TABLE order_item (
   order_item_id SERIAL PRIMARY KEY,

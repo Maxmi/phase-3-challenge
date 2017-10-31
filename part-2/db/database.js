@@ -1,5 +1,6 @@
 const pg_options = {};
-const pgp = require('pg-promise')(pg_options); //pg_options
+const pgp = require('pg-promise')(pg_options); 
+// const pgp = require('pg-promise'); 
 const monitor = require('pg-monitor');
 
 monitor.attach(pg_options)
