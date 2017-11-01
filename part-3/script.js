@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalBtn = document.getElementById('cartBtn');
   const closeBtn = document.querySelector('.closeBtn');
   const clearBtn = document.getElementById('clearBtn');
-  const addToCartBtn = document.querySelector('.addBtn');
+  const addToCartBtn = document.querySelectorAll('.addBtn');
   const total = document.getElementById('total-cart');
   const cartCount = document.getElementById('cart-item-count');
   const cartArray = document.querySelector('.cart-content');
@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     this.price = price;
   };
   
+  //display this if cart is empty 
   const emptyCartContent = () => {
-    return '<li>Cart is empty </li>';
+    return '<span>Cart is empty </span>';
   }
   
   //open cart modal  
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function openModal() {
     modal.style.display = 'block';
     if(cart.count() > 0) {
+      clearBtn.style.display = 'block';
       displayCart();
     } else {
       cartArray.innerHTML = emptyCartContent();
@@ -48,14 +50,19 @@ document.addEventListener('DOMContentLoaded', function() {
   function displayCart() {
     const items = cart.items;    
     cartArray.innerHTML = items.map(item => {
-      return `<li>${item.name} ${item.price}</li>`;
+      return `<div class="item">
+      <span>${item.name}</span>
+      <span>${item.price}</span>
+      </div>`;
     }).join('');
     total.innerText = `$${cart.total()}`;
   };
 
 
   //Add items to cart
-  addToCartBtn.addEventListener('click', putInCart);
+  for(let i = 0; i < addToCartBtn.length; i++) {
+    addToCartBtn[i].addEventListener('click', putInCart);
+  }
 
   function putInCart(event) {
     event.preventDefault();
