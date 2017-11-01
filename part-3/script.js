@@ -5,32 +5,38 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeBtn = document.querySelector('.closeBtn');
   const clearBtn = document.getElementById('clearBtn');
   const addToCartBtn = document.querySelectorAll('.addBtn');
-  const total = document.getElementById('total-cart');
+  const totalCost = document.getElementById('totalCost');
+  const totalDiv = document.querySelector('.total');
   const cartCount = document.getElementById('cart-item-count');
   const cartArray = document.querySelector('.cart-content');
   
-  let Item = function(name, price) {
+  //creating object 
+  const Item = function(name, price) {
     this.name = name;
     this.price = price;
   };
   
-  //display this if cart is empty 
-  const emptyCartContent = () => {
-    return '<span>Cart is empty </span>';
-  }
-  
   //open cart modal  
   modalBtn.addEventListener('click', openModal);
+  //the modal initially is not displayed
+  //it is displayed when the modalBtn clicked
+  //clear button and total amount also not displayed when cart is empty
+ 
   function openModal() {
     modal.style.display = 'block';
     if(cart.count() > 0) {
       clearBtn.style.display = 'block';
+      totalDiv.style.display = 'block';
       displayCart();
     } else {
       cartArray.innerHTML = emptyCartContent();
     }
   };
   
+  //display this if cart is empty 
+  function emptyCartContent() {
+    return '<span>Cart is empty </span>';
+  };
   
   //close cart modal  
   closeBtn.addEventListener('click', closeModal);
@@ -42,8 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
   clearBtn.addEventListener('click', clearCart);
   function clearCart() {
     cart.clearAll();
-    total.innerText = '$0';
     cartArray.innerHTML = emptyCartContent();
+    totalDiv.style.display = 'none';
+    clearBtn.style.display = 'none';
+    cartCount.innerText = '(0)';
   }
 
 
@@ -55,14 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
       <span>${item.price}</span>
       </div>`;
     }).join('');
-    total.innerText = `$${cart.total()}`;
+    totalCost.innerText = `$${cart.total()}`;
   };
 
 
   //Add items to cart
-  for(let i = 0; i < addToCartBtn.length; i++) {
-    addToCartBtn[i].addEventListener('click', putInCart);
-  }
+  //select all add to cart buttons then iterate over the array 
+  addToCartBtn.forEach(function(elem) {
+    elem.addEventListener('click', putInCart);
+  })
+
 
   function putInCart(event) {
     event.preventDefault();
