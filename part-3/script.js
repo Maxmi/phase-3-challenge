@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cartCount.innerText = '(0)';
   }
 
-
+  //iterate over array of items and insert it into html element 
   function displayCart() {
     const items = cart.items;    
     cartArray.innerHTML = items.map(item => {
@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <span>${item.price}</span>
       </div>`;
     }).join('');
-    totalCost.innerText = `$${cart.total()}`;
+    //total amount sometimes coming with more than 2 decimals, force it to show 2 only 
+    totalCost.innerText = `$${cart.total().toFixed(2)}`;
   };
 
 
