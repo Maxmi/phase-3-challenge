@@ -1,9 +1,5 @@
 const pg_options = {};
 const pgp = require('pg-promise')(pg_options); 
-// const pgp = require('pg-promise'); 
-const monitor = require('pg-monitor');
-
-monitor.attach(pg_options)
 
 const connectionOptions = {
   host: 'localhost',
@@ -40,7 +36,23 @@ const realShoppers = () => {
      ON orders.shopper_id = shoppers.shopper_id 
      GROUP BY shopper_name;`
   )
-}
+};
+
+const getNamesAndTotalOrders = () => {
+  return db.any(
+    `SELECT shopper_name, sum(price) AS total_order
+     FROM shoppers
+     JOIN orders 
+     ON shoppers.shopper_id = orders.shopper_id
+     INNER JOIN order_item
+     ON orders.order_id = order_item.order_id
+     JOIN items
+     ON items.id = order_item.item_id
+     GROUP BY shopper_name
+     ORDER BY total_order desc;
+    `
+  )
+};
 
 const closeConnection = () => {
   pgp.end();
@@ -50,5 +62,6 @@ module.exports = {
   closeConnection,
   getItemsFromSection,
   getAllOrders,
-  realShoppers
+  realShoppers,
+  getNamesAndTotalOrders
 }

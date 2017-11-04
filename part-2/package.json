@@ -9,13 +9,11 @@
     "db:init": "npm run db:loadschema && npm run db:seed",
     "db:loadschema": "psql grocery_store < ./db/schema.sql",
     "db:seed": "psql grocery_store < ./db/load_data.sql",
-    
     "test:db:create": "createdb grocery_store_test",
     "test:db:drop": "dropdb grocery_store_test",
     "test:db:loadschema": "psql grocery_store_test < ./db/schema.sql",
     "test:db:seed": "psql grocery_store_test < ./db/load_data.sql",
     "test:db:reset": "npm run test:db:drop && npm run test:db:create && npm run test:db:loadschema && npm run test:db:seed",
-    
     "test": "export NODE_ENV=test && npm run test:db:reset && mocha --exit"
   },
   "keywords": [],
